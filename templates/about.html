@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}About Me - appside{% endblock %}
+
+{% block content %}
+<style>
+  .agri-bg {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border: 2px solid #43a047;
+    box-shadow: 0 4px 24px 0 rgba(67,160,71,0.10);
+    border-radius: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .leaf-decor {
+    position: absolute;
+    width: 60px;
+    opacity: 0.15;
+  }
+  .leaf-top {
+    top: -20px; left: -20px;
+    transform: rotate(-20deg);
+  }
+  .leaf-bottom {
+    bottom: -20px; right: -20px;
+    transform: rotate(30deg);
+  }
+  .agri-icon {
+    color: #388e3c;
+    font-size: 2.2rem;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+</style>
+<div class="row align-items-center my-5">
+    <div class="col-md-6">
+        <div class="agri-bg p-4 shadow">
+            <img src="https://cdn-icons-png.flaticon.com/512/2909/2909765.png" class="leaf-decor leaf-top" alt="leaf">
+            <img src="https://cdn-icons-png.flaticon.com/512/2909/2909765.png" class="leaf-decor leaf-bottom" alt="leaf">
+            <h2 class="mb-3 text-success" style="font-weight:bold; letter-spacing:1px;">
+                <span class="agri-icon">👨‍🌾</span>ประวัติส่วนตัว
+            </h2>
+            <ul class="list-unstyled mb-3" style="font-size:1.1rem; color:#388e3c;">
+                <li><strong>ชื่อ:</strong> นาย ณัฐพล บุญนะรา</li>
+                <li><strong>วันเกิด:</strong> 1 มกราคม 2548</li>
+                <li><strong>การศึกษา:</strong> นักศึกษาสาขาวิทยาการคอมพิวเตอร์</li>
+                <li><strong>มหาวิทยาลัย:</strong> มหาวิทยาลัยราชภัฎศรีสะเกษ</li>
+            </ul>
+            <h4 class="text-success mt-4 mb-2"><span class="agri-icon">🌾</span>ความสนใจ</h4>
+            <ul style="color:#388e3c; font-size:1.05rem;">
+                <li>เทคโนโลยีเพื่อการเกษตรอัจฉริยะ (Smart Farm)</li>
+                <li>การพัฒนาแอปพลิเคชันช่วยเหลือเกษตรกร</li>
+                <li>การปลูกพืชผักปลอดสารพิษ</li>
+                <li>การเรียนรู้และแบ่งปันความรู้ด้านไอทีและเกษตร</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <div class="p-2 d-inline-block bg-white rounded shadow" style="border: 4px solid #43a047;">
+            <img src="{% static 'assets/img/paw1.jpg' %}" class="img-fluid rounded" alt="Profile Image" style="max-width:100%; height:auto;">
+        </div>
+    </div>
+</div>
+{% endblock %}

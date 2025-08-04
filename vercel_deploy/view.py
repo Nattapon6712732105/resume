@@ -14,5 +14,7 @@ def contact(request):
 def forpage(request):
     contact = {}
     contact['count'] = list(range(1, 11))
-    
+
+    context = {'message'} = "Welcome to the forpage."
+
     return render(request, 'for.html', context)

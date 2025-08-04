@@ -10,3 +10,9 @@ def about(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+def forpage(request):
+    contact = {}
+    contact['count'] = list(range(1, 11))
+    
+    return render(request, 'for.html', context)

@@ -11,10 +11,20 @@ def about(request):
 def contact(request):
     return render(request, 'contact.html')
 
-def forpage(request):
-    contact = {}
-    contact['count'] = list(range(1, 11))
+def multiply(request):
+    context = {}
+    # context['count'] = list(range(1, 11))  # Example context variable
+    context['message'] = "This is the for page."
+    # multiplier = 2
+    if request.method == 'POST' and request.POST.get('number') != '':
+        multiplier = int(request.POST.get('number'))
+        print(request.POST['number'])
+        context['count'] = list(range(1, multiplier + 1))
+    else:
+        multiplier = 2
+        number = 1
+        context['count'] = list(range(1, 2))
 
-    context = {'message'} = "Welcome to the forpage."
+    context['results'] = [(multiplier, i, multiplier * i) for i in context['count']]
 
-    return render(request, 'for.html', context)
+    return render(request, 'multiply.html', context)

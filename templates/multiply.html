@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+.agri-card {
+    background: #f6fbe8;
+    color: #4e3d18;
+    border: 2px solid #b6d7a8;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(120,180,80,0.15);
+    font-family: 'Kanit', 'Prompt', 'Sarabun', 'Tahoma', sans-serif;
+}
+.agri-header {
+    background: linear-gradient(90deg, #b6d7a8 0%, #f6fbe8 100%);
+    color: #38761d;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #93c47d;
+    border-radius: 14px 14px 0 0;
+    padding: 0.75rem 1rem;
+    font-size: 1.2rem;
+}
+.agri-form-label {
+    color: #38761d;
+    font-weight: bold;
+}
+.agri-btn {
+    background: linear-gradient(90deg, #93c47d 0%, #b6d7a8 100%);
+    color: #4e3d18;
+    border: none;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(120,180,80,0.10);
+    transition: background 0.2s;
+}
+.agri-btn:hover {
+    background: linear-gradient(90deg, #b6d7a8 0%, #93c47d 100%);
+    color: #285017;
+}
+.agri-table th, .agri-table td {
+    background: #f6fbe8;
+    color: #4e3d18;
+    border-color: #b6d7a8;
+    font-size: 1.05rem;
+}
+.agri-table th {
+    color: #38761d;
+    background: #e2efd9;
+}
+</style>
+
+<div class="card agri-card mx-auto mb-4" style="width: 28rem;">
+    <div class="agri-header">
+        สูตรคูณแนวเกษตร
+    </div>
+    <div class="card-body">
+        <form method="post" action="{% url 'multiply_page' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="count" class="form-label agri-form-label">ใส่แม่สูตรคูณ</label>
+                <input 
+                type="number" 
+                class="form-control"
+                id="count" 
+                name="number"
+                aria-describedby="emailHelp"
+                style="background:#e2efd9; color:#38761d; border:1.5px solid #93c47d;">
+                <div id="emailHelp" class="form-text" style="color:#6aa84f;">กรอกเลขแม่สูตรคูณ เช่น 2, 5, 9</div>
+            </div>
+            <button type="submit" class="btn agri-btn">คำนวณ</button>
+        </form>
+    </div>
+</div>
+
+<div class="card agri-card mx-auto" style="width: 28rem;">
+    <div class="agri-header">
+        ตารางสูตรคูณ
+    </div>
+    <div class="card-body" style="overflow-x:auto;">
+        <table class="table agri-table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">แม่คูณ</th>
+                    <th scope="col">ตัวคูณ</th>
+                    <th scope="col">ผลลัพธ์</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if results %}
+                    {% for a, b, c in results %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ a }}</td>
+                            <td>{{ b }}</td>
+                            <td>{{ c }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">กรุณากรอกเลขแล้วกดคำนวณ</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

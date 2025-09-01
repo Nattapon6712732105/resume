@@ -1,4 +1,7 @@
+
 from django.shortcuts import render
+from . import models
+from . import models
 
 # เพิ่มฟังก์ชัน multiply ให้ตรงกับที่ urls.py เรียกใช้
 def multiply(request):
@@ -33,4 +36,12 @@ def forpage(request):
     contact['count'] = list(range(1, 11))
 
     return render(request, 'for.html', contact)
-   
+
+def students(request):
+    context = {}
+    context['title'] = "This is the students page."
+
+    students = models.Students.objects.all()
+
+    context['students'] = students
+    return render(request, 'students.html', context)

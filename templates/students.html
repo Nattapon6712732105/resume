@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-success text-white">
+      <h4>รายชื่อนักเรียน</h4>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered table-hover">
+        <thead class="table-success">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">รหัส</th>
+            <th scope="col">ชื่อ</th>
+            <th scope="col">นามสกุล</th>
+            <th scope="col">อายุ</th>
+            <th scope="col">ห้อง</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if students %}
+            {% for student in students %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ student.id }}</td>
+                <td>{{ student.first_name }}</td>
+                <td>{{ student.last_name }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.classroom }}</td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="6" class="text-center">ไม่มีข้อมูลนักเรียน</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from httpx import request
+from . import form
 
 
 def home(request):
@@ -28,3 +29,12 @@ def multiply(request):
     context['results'] = [(multiplier, i, multiplier * i) for i in context['count']]
 
     return render(request, 'multiply.html', context)
+
+def student(request):
+    context = {}
+    context['title'] = "This is the students page."
+
+    students = models.Students.objects.all()
+
+    context['students'] = students
+    return render(request, 'students.html', context)
